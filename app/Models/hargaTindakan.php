@@ -12,9 +12,10 @@ class HargaTindakan extends Model
     protected $table = 'harga_tindakans';
 
     protected $fillable = [
-        'name', 
-        'price',
+        'name',                'price',       
+        'visit_type_id'
     ];
+
 
     public function patients()
     {

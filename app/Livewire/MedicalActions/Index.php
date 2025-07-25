@@ -4,6 +4,7 @@ namespace App\Livewire\MedicalActions;
 
 use Livewire\Component;
 use App\Models\Patient;
+use App\Models\HargaTindakan;
 
 class Index extends Component
 {
@@ -18,21 +19,22 @@ class Index extends Component
             ->firstOrFail();
 
         $this->selectedPatientId = $patient->id;
-        $this->visit_type = $patient->visit_type;
+        $this->visit_type = $patient->harga_tindakan_id;
         $this->prescription = $patient->prescription;
     }
+
     // Simpan tindakan medis
     public function save()
     {
         $this->validate([
-            'visit_type' => 'required|string',
+            'visit_type' => 'required|integer|exists:harga_tindakans,id',
             'prescription' => 'required|string',
         ]);
 
         $patient = Patient::findOrFail($this->selectedPatientId);
 
         $patient->update([
-            'visit_type' => $this->visit_type,
+            'harga_tindakan_id' => $this->visit_type,
             'prescription' => $this->prescription,
             'handled_by_doctor' => true,
         ]);
@@ -50,7 +52,8 @@ class Index extends Component
     public function render()
     {
         return view('livewire.MedicalActions.index', [
-            'patients' => Patient::where('handled_by_doctor', false)->get(),
+            'patients' => Patient::where('handled_by_doctor', false)->with('hargaTindakan')->get(),
+            'hargaTindakans' => HargaTindakan::all(),
         ]);
     }
 }

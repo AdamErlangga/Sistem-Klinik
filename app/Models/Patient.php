@@ -16,8 +16,10 @@ class Patient extends Model
         'visit_type',
         'prescription',
         'handled_by_doctor',
-        'harga_tindakan_id', // <- tambahkan ini agar bisa mass-assignment
+        'harga_tindakan_id',
+        'is_paid'
     ];
+
 
     public function hargaTindakan()
     {

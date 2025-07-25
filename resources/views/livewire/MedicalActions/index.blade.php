@@ -2,12 +2,8 @@
     <h2 class="text-xl font-bold mb-4">Pasien Belum Ditangani</h2>
 
     @if (session()->has('success'))
-        <div 
-            x-data="{ show: true }" 
-            x-init="setTimeout(() => show = false, 3000)" 
-            x-show="show"
-            class="bg-green-500 text-white p-3 rounded mb-4 transition-all duration-500"
-        >
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show"
+            class="bg-green-500 text-white p-3 rounded mb-4 transition-all duration-500">
             {{ session('success') }}
         </div>
     @endif
@@ -17,7 +13,7 @@
             <li class="bg-gray-700 p-4 rounded">
                 <div class="flex justify-between items-center">
                     <div>
-                        <strong>{{ $patient->name }}</strong> ({{ $patient->visit_type }})<br>
+                        <strong>{{ $patient->name }}</strong> ({{ $patient->hargaTindakan->name ?? '-' }})<br>
                         <small class="text-gray-300">Keluhan: {{ $patient->complaint }}</small>
                     </div>
                     <button wire:click="selectPatient({{ $patient->id }})"
@@ -35,11 +31,11 @@
                                 <label class="block mb-1">Jenis Kunjungan</label>
                                 <select wire:model="visit_type" class="w-full bg-gray-900 text-white p-2 rounded">
                                     <option value="">-- Pilih Jenis Kunjungan --</option>
-                                    <option value="umum">Umum</option>
-                                    <option value="laboratorium">Laboratorium</option>
-                                    <option value="rujukan">Rujukan</option>
+                                    <option value="1">Umum</option>
+                                    <option value="2">Laboratorium</option>
+                                    <option value="3">Rujukan</option>
                                 </select>
-                                @error('visit_type') 
+                                @error('visit_type')
                                     <span class="text-red-400 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -47,12 +43,13 @@
                             <div>
                                 <label class="block mb-1">Resep</label>
                                 <textarea wire:model="prescription" class="w-full bg-gray-900 text-white p-2 rounded"></textarea>
-                                @error('prescription') 
+                                @error('prescription')
                                     <span class="text-red-400 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
 
-                            <button type="submit" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white cursor-pointer">
+                            <button type="submit"
+                                class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white cursor-pointer">
                                 Simpan Tindakan
                             </button>
                         </form>

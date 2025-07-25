@@ -10,31 +10,46 @@
         @endif
 
         <!-- Form Input -->
-        <form wire:submit="save" class="space-y-4">
+        <form wire:submit.prevent="save" class="space-y-4">
             <div>
                 <label for="name" class="block text-white">Nama Pasien</label>
                 <input wire:model="name" id="name" type="text" class="w-full p-2 rounded bg-gray-800 text-white">
+                @error('name')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
             <div>
                 <label for="region" class="block text-white">Wilayah</label>
                 <input wire:model="region" id="region" type="text"
                     class="w-full p-2 rounded bg-gray-800 text-white">
+                @error('region')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
             <div>
                 <label for="complaint" class="block text-white">Keluhan</label>
                 <textarea wire:model="complaint" id="complaint" class="w-full p-2 rounded bg-gray-800 text-white"></textarea>
+                @error('complaint')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
             <div>
-                <label for="visit_type" class="block text-white">Jenis Kunjungan</label>
-                <select wire:model="visit_type" id="visit_type" class="w-full p-2 rounded bg-gray-800 text-white">
+                <label for="harga_tindakan_id" class="block text-white">Jenis Kunjungan</label>
+                <select wire:model="harga_tindakan_id" id="harga_tindakan_id"
+                    class="w-full p-2 rounded bg-gray-800 text-white">
                     <option value="">-- Pilih Jenis Kunjungan --</option>
-                    <option value="1">Umum</option>
-                    <option value="2">Laboratorium</option>
-                    <option value="3">Rujukan</option>
+                    @foreach ($hargaTindakans as $tindakan)
+                        <option value="{{ $tindakan->id }}">
+                            {{ $tindakan->name }}
+                        </option>
+                    @endforeach
                 </select>
+                @error('harga_tindakan_id')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
             <button type="submit"
