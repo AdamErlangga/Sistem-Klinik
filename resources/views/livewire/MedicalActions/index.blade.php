@@ -29,13 +29,14 @@
                         <form wire:submit.prevent="save" class="space-y-4">
                             <div>
                                 <label class="block mb-1">Jenis Kunjungan</label>
-                                <select wire:model="visit_type" class="w-full bg-gray-900 text-white p-2 rounded">
-                                    <option value="">-- Pilih Jenis Kunjungan --</option>
-                                    <option value="1">Umum</option>
-                                    <option value="2">Laboratorium</option>
-                                    <option value="3">Rujukan</option>
+                                <select wire:model="harga_tindakan_id"
+                                    class="w-full bg-gray-900 text-white p-2 rounded">
+                                    <option value="">-- Pilih Jenis Tindakan --</option>
+                                    @foreach (\App\Models\HargaTindakan::all() as $tindakan)
+                                        <option value="{{ $tindakan->id }}">{{ $tindakan->name }}</option>
+                                    @endforeach
                                 </select>
-                                @error('visit_type')
+                                @error('harga_tindakan_id')
                                     <span class="text-red-400 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
