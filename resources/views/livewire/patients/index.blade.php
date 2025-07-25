@@ -4,7 +4,8 @@
 
         <!-- Flash message -->
         @if (session()->has('success'))
-            <div class="bg-green-500 text-white p-3 rounded mb-4">
+            <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition
+                class="bg-green-500 text-white p-2 rounded">
                 {{ session('success') }}
             </div>
         @endif
@@ -13,7 +14,8 @@
         <form wire:submit.prevent="save" class="space-y-4">
             <div>
                 <label for="name" class="block text-white">Nama Pasien</label>
-                <input wire:model="name" id="name" type="text" class="w-full p-2 rounded bg-gray-800 text-white">
+                <input wire:model="name" id="name" type="text"
+                    class="w-full p-2 rounded bg-gray-800 text-white">
                 @error('name')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror

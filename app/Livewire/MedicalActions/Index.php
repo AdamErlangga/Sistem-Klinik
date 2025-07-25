@@ -11,19 +11,22 @@ class Index extends Component
     public $selectedPatientId = null;
     public $visit_type, $prescription;
 
-    // Pilih pasien untuk ditindak
     public function selectPatient($id)
     {
-        $patient = Patient::where('id', $id)
-            ->where('handled_by_doctor', false)
-            ->firstOrFail();
+        if ($this->selectedPatientId === $id) {
+            $this->resetForm();
+        } else {
+            $patient = Patient::where('id', $id)
+                ->where('handled_by_doctor', false)
+                ->firstOrFail();
 
-        $this->selectedPatientId = $patient->id;
-        $this->visit_type = $patient->harga_tindakan_id;
-        $this->prescription = $patient->prescription;
+            $this->selectedPatientId = $patient->id;
+            $this->visit_type = $patient->harga_tindakan_id;
+            $this->prescription = $patient->prescription;
+        }
     }
 
-    // Simpan tindakan medis
+
     public function save()
     {
         $this->validate([

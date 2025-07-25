@@ -3,7 +3,8 @@
 
     {{-- Flash Message --}}
     @if (session()->has('success'))
-        <div class="bg-green-500 text-white p-2 rounded">
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition
+            class="bg-green-500 text-white p-2 rounded">
             {{ session('success') }}
         </div>
     @endif

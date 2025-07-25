@@ -8,6 +8,7 @@ use App\Livewire\MedicalActions\Index as MedicalActionIndex;
 use App\Livewire\Patients\Index as PatientIndex;
 use App\Livewire\HargaTindakan\Index as HargaTindakanIndex;
 use App\Livewire\Transaksi\Index as TransaksiIndex;
+use App\Livewire\RiwayatTransaksi\Index as RiwayatTransaksiIndex;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,6 +39,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/patients', PatientIndex::class)->name('patients.index');
 
     Route::get('/transaksi', TransaksiIndex::class)->name('transaksi.index');
+
+    Route::get('/riwayat-transaksi', RiwayatTransaksiIndex::class)->name('riwayat-transaksi.index');
 
 });
 

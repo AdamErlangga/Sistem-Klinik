@@ -39,6 +39,10 @@
                         :current="request()->routeIs('harga-tindakan.index')" wire:navigate>
                         {{ __('Tindakan') }}
                     </flux:navlist.item>
+                    <flux:navlist.item class="mb-2" icon="users" :href="route('riwayat-transaksi.index')"
+                        :current="request()->routeIs('riwayat-transaksi.index')" wire:navigate>
+                        {{ __('Riwayat Transaksi') }}
+                    </flux:navlist.item>
                 @endif
 
                 {{-- Menu Pendaftaran - Hanya untuk petugas pendaftaran --}}
@@ -56,10 +60,16 @@
                         {{ __('Tindakan Medis') }}
                     </flux:navlist.item>
                 @endif
+                
+                {{-- Menu Transaksi - hanya untuk kasir --}}
                 @if (auth()->user()->role->name === 'kasir')
                     <flux:navlist.item class="mb-2" icon="currency-dollar" :href="route('transaksi.index')"
                         :current="request()->routeIs('transaksi.*')" wire:navigate>
                         {{ __('Transaksi') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item class="mb-2" icon="users" :href="route('riwayat-transaksi.index')"
+                        :current="request()->routeIs('riwayat-transaksi.index')" wire:navigate>
+                        {{ __('Riwayat Transaksi') }}
                     </flux:navlist.item>
                 @endif
 
