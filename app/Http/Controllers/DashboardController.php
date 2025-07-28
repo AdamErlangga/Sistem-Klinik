@@ -13,7 +13,7 @@ class DashboardController extends Controller
             ->where('handled_by_doctor', 1)
             ->count();
 
-        $totalPasien = Patient::count();
+        $totalPasien = Patient::where('handled_by_doctor', 1)->count(); 
 
         return view('dashboard', compact('pasienHariIni', 'totalPasien'));
     }
