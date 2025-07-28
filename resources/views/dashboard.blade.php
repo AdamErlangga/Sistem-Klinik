@@ -1,6 +1,7 @@
 <x-layouts.app :title="__('Dashboard')">
     <div class="flex flex-col gap-6">
 
+        <!-- Header -->
         <div>
             <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">Selamat Datang</h1>
             <p class="text-sm text-gray-600 dark:text-gray-400">
@@ -9,6 +10,7 @@
             </p>
         </div>
 
+        <!-- Informasi Aplikasi -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div
                 class="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow rounded-xl p-6">
@@ -32,7 +34,23 @@
             </div>
         </div>
 
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Pasien Hari Ini -->
+            <div
+                class="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow rounded-xl p-6">
+                <h2 class="text-lg font-semibold text-white mb-2">Pasien Hari Ini</h2>
+                <p class="text-4xl font-bold text-green-400">{{ $pasienHariIni }}</p>
+            </div>
 
+            <!-- Total Pasien -->
+            <div
+                class="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow rounded-xl p-6">
+                <h2 class="text-lg font-semibold text-white mb-2">Total Pasien</h2>
+                <p class="text-4xl font-bold text-blue-400">{{ $totalPasien }}</p>
+            </div>
+        </div>
+
+        <!-- Placeholder Grafik -->
         <div
             class="relative h-64 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 shadow overflow-hidden">
             <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/10 dark:stroke-neutral-100/10" />
@@ -40,5 +58,6 @@
                 Grafik atau Aktivitas Terakhir (Coming Soon)
             </div>
         </div>
+
     </div>
 </x-layouts.app>
