@@ -17,13 +17,16 @@
 
 
     <!-- Sticky Header berisi Navbar -->
-    <header id="stickyLogin" class="fixed top-0 left-0 w-full z-50 hidden transition-all duration-300">
-        <nav id="scrollNavbar" class="bg-gray-900 text-white shadow-md px-4 py-3 flex justify-between items-center">
-            <div class="text-lg font-semibold">
+    <header id="stickyLogin"
+        class="fixed top-0 left-0 w-full z-50 transition-all duration-500 transform -translate-y-full opacity-0 pointer-events-none">
+
+        <nav
+            class="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md shadow-md px-6 py-3 flex justify-between items-center text-gray-800 dark:text-white">
+            <div class="text-xl font-bold tracking-tight">
                 Aplikasi Klinik
             </div>
             <a href="{{ route('login') }}"
-                class="px-3 py-1 mr-4 bg-white text-gray-900 rounded-lg text-sm hover:bg-gray-200 transition font-bold">
+                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-full shadow transition duration-300">
                 Login
             </a>
         </nav>

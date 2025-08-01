@@ -7,9 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const observer = new IntersectionObserver(
         ([entry]) => {
             if (entry.isIntersecting) {
-                stickyHeader.classList.add("hidden");
+                // Saat hero terlihat → header disembunyikan dengan transisi
+                stickyHeader.classList.add("opacity-0", "pointer-events-none", "-translate-y-full");
             } else {
-                stickyHeader.classList.remove("hidden");
+                // Saat hero tidak terlihat → header ditampilkan dengan transisi
+                stickyHeader.classList.remove("opacity-0", "pointer-events-none", "-translate-y-full");
             }
         },
         { threshold: 0.1 }
